@@ -56,10 +56,12 @@ actual DarkOs image file format, the kernel loads as a flat file.  The layout
 of the "kernel" image file is:
 
 Kernel Image File Layout
-    Component          File Offset    Size       Load Base
-    ----------------------------------------------------------
-    HAL Upper Stub     0x00000000     8KB        0x01000000
-    Kernel             0x00004000     -          0x01004000
+~~~~
+Component          File Offset    Size       Load Base
+----------------------------------------------------------
+HAL Upper Stub     0x00000000     8KB        0x01000000
+Kernel             0x00004000     -          0x01004000
+~~~~
 
 ## Hardware Abstraction Layer (HAL) Common ##
 Partially implemented, need docs.
@@ -71,74 +73,76 @@ Partially implemented, need docs.
 A structure specific to each CPU in the system.  Referenced via [gs:0x0000].
 
 Current CPU Context Block Format
-    struc HALX86_CPU_BLOCK
-        .CpuBlockPointer            resd 1
-        .CpuBlockPointer_Pad        resd 3  ; Align on 16-byte boundary.
-        
-        ; The GDT and GDT table.
-        .Gdt_Start:
-        .Gdt_Len                    resw 1
-        .Gdt_Addr                   resd 1
-        .Gdt_Pad                    resw 1
-        
-        .Gdt_0                      resb 8
-        .Gdt_1                      resb 8
-        .Gdt_2                      resb 8
-        .Gdt_3                      resb 8
-        .Gdt_4                      resb 8
-        .Gdt_5                      resb 8
-        .Gdt_6                      resb 8
-        .Gdt_X                      resb 40
-        
-        ; TSS, align on 4-byte boundary.
-        .Tss_Start:
-        .Tss_Link                   resw 1  ; 0x00
-        .Tss_Link_Pad               resw 1  ; 0x02
-        .Tss_Esp0                   resd 1  ; 0x04
-        .Tss_Ss0                    resw 1  ; 0x08
-        .Tss_Ss0_Pad                resw 1  ; 0x0A
-        .Tss_Esp1                   resd 1  ; 0x0C
-        .Tss_Ss1                    resw 1  ; 0x10
-        .Tss_Ss1_Pad                resw 1  ; 0x12
-        .Tss_Esp2                   resd 1  ; 0x14
-        .Tss_Ss2                    resw 1  ; 0x18
-        .Tss_Ss2_Pad                resw 1  ; 0x1A
-        .Tss_Cr3                    resd 1  ; 0x1C
-        .Tss_Eip                    resd 1  ; 0x20
-        .Tss_Eflags                 resd 1  ; 0x24
-        .Tss_Eax                    resd 1  ; 0x28
-        .Tss_Ecx                    resd 1  ; 0x2C
-        .Tss_Edx                    resd 1  ; 0x30
-        .Tss_Ebx                    resd 1  ; 0x34
-        .Tss_Esp                    resd 1  ; 0x38
-        .Tss_Ebp                    resd 1  ; 0x3C
-        .Tss_Esi                    resd 1  ; 0x40
-        .Tss_Edi                    resd 1  ; 0x44
-        .Tss_Es                     resw 1  ; 0x48
-        .Tss_Es_Pad                 resw 1  ; 0x4A
-        .Tss_Cs                     resw 1  ; 0x4C
-        .Tss_Cs_Pad                 resw 1  ; 0x4E
-        .Tss_Ss                     resw 1  ; 0x50
-        .Tss_Ss_Pad                 resw 1  ; 0x52
-        .Tss_Ds                     resw 1  ; 0x54
-        .Tss_Ds_Pad                 resw 1  ; 0x56
-        .Tss_Fs                     resw 1  ; 0x58
-        .Tss_Fs_Pad                 resw 1  ; 0x5A
-        .Tss_Gs                     resw 1  ; 0x5C
-        .Tss_Gs_Pad                 resw 1  ; 0x5E
-        .Tss_Ldt                    resw 1  ; 0x60
-        .Tss_Ldt_Pad                resw 1  ; 0x62
-        .Tss_IoBmpBase_Pad          resw 1  ; 0x64
-        .Tss_IoBmpBase              resw 1  ; 0x66
-        .Tss_Length:
-        
-        ; Current execution state.
-        .CurrentProcessBlock        resd 1
-        .CurrentThreadBlock         resd 1
-        
-        ; Size
-        .size:
-    endstruc
+~~~~
+struc HALX86_CPU_BLOCK
+    .CpuBlockPointer            resd 1
+    .CpuBlockPointer_Pad        resd 3  ; Align on 16-byte boundary.
+    
+    ; The GDT and GDT table.
+    .Gdt_Start:
+    .Gdt_Len                    resw 1
+    .Gdt_Addr                   resd 1
+    .Gdt_Pad                    resw 1
+    
+    .Gdt_0                      resb 8
+    .Gdt_1                      resb 8
+    .Gdt_2                      resb 8
+    .Gdt_3                      resb 8
+    .Gdt_4                      resb 8
+    .Gdt_5                      resb 8
+    .Gdt_6                      resb 8
+    .Gdt_X                      resb 40
+    
+    ; TSS, align on 4-byte boundary.
+    .Tss_Start:
+    .Tss_Link                   resw 1  ; 0x00
+    .Tss_Link_Pad               resw 1  ; 0x02
+    .Tss_Esp0                   resd 1  ; 0x04
+    .Tss_Ss0                    resw 1  ; 0x08
+    .Tss_Ss0_Pad                resw 1  ; 0x0A
+    .Tss_Esp1                   resd 1  ; 0x0C
+    .Tss_Ss1                    resw 1  ; 0x10
+    .Tss_Ss1_Pad                resw 1  ; 0x12
+    .Tss_Esp2                   resd 1  ; 0x14
+    .Tss_Ss2                    resw 1  ; 0x18
+    .Tss_Ss2_Pad                resw 1  ; 0x1A
+    .Tss_Cr3                    resd 1  ; 0x1C
+    .Tss_Eip                    resd 1  ; 0x20
+    .Tss_Eflags                 resd 1  ; 0x24
+    .Tss_Eax                    resd 1  ; 0x28
+    .Tss_Ecx                    resd 1  ; 0x2C
+    .Tss_Edx                    resd 1  ; 0x30
+    .Tss_Ebx                    resd 1  ; 0x34
+    .Tss_Esp                    resd 1  ; 0x38
+    .Tss_Ebp                    resd 1  ; 0x3C
+    .Tss_Esi                    resd 1  ; 0x40
+    .Tss_Edi                    resd 1  ; 0x44
+    .Tss_Es                     resw 1  ; 0x48
+    .Tss_Es_Pad                 resw 1  ; 0x4A
+    .Tss_Cs                     resw 1  ; 0x4C
+    .Tss_Cs_Pad                 resw 1  ; 0x4E
+    .Tss_Ss                     resw 1  ; 0x50
+    .Tss_Ss_Pad                 resw 1  ; 0x52
+    .Tss_Ds                     resw 1  ; 0x54
+    .Tss_Ds_Pad                 resw 1  ; 0x56
+    .Tss_Fs                     resw 1  ; 0x58
+    .Tss_Fs_Pad                 resw 1  ; 0x5A
+    .Tss_Gs                     resw 1  ; 0x5C
+    .Tss_Gs_Pad                 resw 1  ; 0x5E
+    .Tss_Ldt                    resw 1  ; 0x60
+    .Tss_Ldt_Pad                resw 1  ; 0x62
+    .Tss_IoBmpBase_Pad          resw 1  ; 0x64
+    .Tss_IoBmpBase              resw 1  ; 0x66
+    .Tss_Length:
+    
+    ; Current execution state.
+    .CurrentProcessBlock        resd 1
+    .CurrentThreadBlock         resd 1
+    
+    ; Size
+    .size:
+endstruc
+~~~~
 
 ## Thread Context Block ##
 TODO
@@ -150,13 +154,15 @@ TODO
 Segments indexes are configured globally for the system.
 
 Current System Segments
-    0x00 - Unused
-    0x08 - 32-bit Kernel Code
-    0x10 - 32-bit Kernel Data
-    0x18 - CPU Data segment
-    0x20 - Task Segment
-    0x28 - 32-bit User Code
-    0x30 - 32-bit User Data
+~~~~
+0x00    Unused
+0x08    32-bit Kernel Code
+0x10    32-bit Kernel Data
+0x18    CPU Data segment
+0x20    Task Segment
+0x28    32-bit User Code
+0x30    32-bit User Data
+~~~~
 
 ## Paging ##
 The lower 4 MB is identity mapped.  The lower 32 MB is also mapped to 0x80000000.
