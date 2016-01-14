@@ -268,14 +268,17 @@ Halx86_IsrRootCallback(
     HALX86_CONTEXT_RECORD* pContext
     )
 {
-    Hal_conprintf("Halx86_IsrRootCallback: Id=%02X, EC=%08X\n", IntIndex, IntErrorCode);
+    // Hal_conprintf("Halx86_IsrRootCallback: Id=%02X, EC=%08X\n", IntIndex, IntErrorCode);
     
     // TODO: Handle the interrupt.
     if (IntIndex == 0x20)
     {
         // Timer.
         g_TimerHitCount++;
-        Hal_conprintf("Halx86_TIMER: %d\n", g_TimerHitCount);
+        if (0 == (g_TimerHitCount % 100))
+        {
+            Hal_conprintf("Halx86_TIMER: %d\n", g_TimerHitCount);
+        }
     }
     
     // Send EOI when appropriate.

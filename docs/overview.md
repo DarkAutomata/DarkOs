@@ -10,6 +10,22 @@ trade-offs, advantages, and disadvantages become known and understood.
 With this in mind, DarkOs should provide a decent examination into the
 difficulties of creating a multi-tasking operating system.
 
+## Build System and Tools ##
+Since we are building an operating system from the ground up, it's not wise
+to use tools which target an existing operating system such as Linux, Windows, or
+OSX.  Here is a list of tools required:
+- A posix environment -- I use cygwin on Windows.
+- A version of binutils capable of targeting i686-elf files and having a sysroot specified.
+- A gcc cross compiler for i686-elf files.
+- NASM, because I find GNU assembler syntax horribly annoying.
+
+The sources and NASM for the current project binutils and gcc can be found here:
+ http://darkautomata.com/DarkOs_Build_Sources_2016_01_14.zip
+
+You probably also want a good (or a few...) x86 emulators.  I use VirtualBox
+because of it's nifty debugging capabilities and it's speed.  It boots from a
+VHD so updating the disk image is relatively painless.
+
 ## Conventions ##
 The code is split into the hardware abstraction layer (HAL) and the kernel.
 
@@ -143,7 +159,9 @@ Current System Segments
     0x30 - 32-bit User Data
 
 ## Paging ##
-Bottom 4 MB is identity mapped.  Bottom 32 MB is mapped to 0x80000000 as well.
+The lower 4 MB is identity mapped.  The lower 32 MB is also mapped to 0x80000000.
+TODO: Discuss kernel vs. user page directory layout.
+TODO: Discuss kernel PDEs always present (wasting 2MB of RAM, but for good reason).
 
 ## Interrupts ##
 Partially implemented, see Halx86_IsrRootCallback.
