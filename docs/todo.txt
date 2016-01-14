@@ -1,0 +1,6 @@
+Things to do...
+
+- Initialize IDT
+- Setup PIC
+- Turn on timer interrupt and test.
+
