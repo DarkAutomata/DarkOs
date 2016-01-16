@@ -12,46 +12,46 @@ difficulties of creating a multi-tasking operating system.
 
 ## Future Work / TODO ##
 - Memory Manager (Mem_*)
- - Implement buddy list algorithm for use with both physical page allocator
-   and the heap allocator.
- - MEM_ALLOC_FLAGS:
-  - Read
-  - Write
-  - Execute
-  - Contiguous
-  - ???
- - Page Allocator:
-  - Mem_PagesInit(size_t SystemRam);
-  - Mem_PagesMarkBusy(void* pBasePa, size_t PageCount);
-  - Mem_PagesAlloc(size_t PageCount, uint32_t Flags);
-  - Mem_PagesFree(void* pBaseVa, size_t PageCount);
- - Heap / System VA allocator.
-  - Mem_SysAlloc(size_t ByteCount, uint32_t Flags);
-  - Mem_SysFree(void* pBaseVA);
+  - Implement buddy list algorithm for use with both physical page allocator
+    and the heap allocator.
+  - MEM_ALLOC_FLAGS:
+    - Read
+    - Write
+    - Execute
+    - Contiguous
+    - ???
+  - Page Allocator:
+    - Mem_PagesInit(size_t SystemRam);
+    - Mem_PagesMarkBusy(void* pBasePa, size_t PageCount);
+    - Mem_PagesAlloc(size_t PageCount, uint32_t Flags);
+    - Mem_PagesFree(void* pBaseVa, size_t PageCount);
+  - Heap / System VA allocator.
+    - Mem_SysAlloc(size_t ByteCount, uint32_t Flags);
+    - Mem_SysFree(void* pBaseVA);
 - Process Definition
- - Process Block
- - Krn_CreateProcess(...);
- - Krn_TerminateProcess(...);
+  - Process Block
+  - Krn_CreateProcess(...);
+  - Krn_TerminateProcess(...);
 - Thread Definition
- - Thread Block
- - Krn_CreateThread(...);
- - Krn_TerminateThread(...);
+  - Thread Block
+  - Krn_CreateThread(...);
+  - Krn_TerminateThread(...);
 - Scheduler
- - Start really simple here.
+  - Start really simple here.
 - Wait Blocks
- - Event Definition
- - Krn_EvtCreate(...);
- - Krn_EvtFree(...);
- - Krn_EvtWait(...);
+  - Event Definition
+  - Krn_EvtCreate(...);
+  - Krn_EvtFree(...);
+  - Krn_EvtWait(...);
 - Other synchronization primatives?
- - Spinlocks?
+  - Spinlocks?
 - Define system semantics
- - Interrupts ?
- - Work items
-  - KRN_WORK_ITEM
-  - KRN_WORK_ITME_TYPE
-   - ISR
-   - Async
+  - Interrupts ?
+  - Work items
+    - KRN_WORK_ITEM
+    - KRN_WORK_ITME_TYPE
+      - ISR
+      - Async
 
 
 ## Build System and Tools ##
