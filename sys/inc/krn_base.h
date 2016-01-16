@@ -52,12 +52,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Various kernel data structures.
 //
 
-typedef struct _STACK_ENTRY STACK_ENTRY;
-typedef struct _LIST_ENTRY LIST_ENTRY;
+typedef struct _KRN_STACK_ENTRY KRN_STACK_ENTRY;
+typedef struct _KRN_LIST_ENTRY KRN_LIST_ENTRY;
 
-struct _STACK_ENTRY
+struct _KRN_STACK_ENTRY
 {
-    STACK_ENTRY* pNext;
+    KRN_STACK_ENTRY* pNext;
 };
 
 //
@@ -67,10 +67,10 @@ struct _STACK_ENTRY
 // location.  If Head->pNext == Head or Head->pPrev == Head then the end of
 // iteration has occurred.
 // 
-struct _LIST_ENTRY
+struct _KRN_LIST_ENTRY
 {
-    LIST_ENTRY* pNext;
-    LIST_ENTRY* pPrev;
+    KRN_LIST_ENTRY* pNext;
+    KRN_LIST_ENTRY* pPrev;
 };
 
 // 
@@ -191,66 +191,66 @@ Krn_InterlockedCmpExgPtr(
 void
 OSCALL
 Krn_StackInit(
-    STACK_ENTRY* pStack
+    KRN_STACK_ENTRY* pStack
     );
 
 void
 OSCALL
 Krn_StackPush(
-    STACK_ENTRY* pStack,
-    STACK_ENTRY* pEntry
+    KRN_STACK_ENTRY* pStack,
+    KRN_STACK_ENTRY* pEntry
     );
 
-STACK_ENTRY*
+KRN_STACK_ENTRY*
 OSCALL
 Krn_StackPop(
-    STACK_ENTRY* pStack
+    KRN_STACK_ENTRY* pStack
     );
 
 // List functions.
 void
 OSCALL
 Krn_ListInit(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     );
 
 void
 OSCALL
 Krn_ListAddHead(
-    LIST_ENTRY* pList,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pList,
+    KRN_LIST_ENTRY* pEntry
     );
 
 void
 OSCALL
 Krn_ListAddTail(
-    LIST_ENTRY* pList,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pList,
+    KRN_LIST_ENTRY* pEntry
     );
 
-LIST_ENTRY*
+KRN_LIST_ENTRY*
 OSCALL
 Krn_ListRemoveHead(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     );
 
-LIST_ENTRY*
+KRN_LIST_ENTRY*
 OSCALL
 Krn_ListRemoveTail(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     );
 
 void
 OSCALL
 Krn_ListRemoveEntry(
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pEntry
     );
 
 void
 OSCALL
 Krn_ListAddEntry(
-    LIST_ENTRY* pBefore,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pBefore,
+    KRN_LIST_ENTRY* pEntry
     );
 
 #endif // __KRN_BASE_H__

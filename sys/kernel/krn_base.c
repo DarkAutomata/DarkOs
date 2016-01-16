@@ -182,7 +182,7 @@ Krn_InterlockedCmpExgPtr(
 void
 OSCALL
 Krn_StackInit(
-    STACK_ENTRY* pStack
+    KRN_STACK_ENTRY* pStack
     )
 {
     pStack->pNext = NULL;
@@ -191,12 +191,12 @@ Krn_StackInit(
 void
 OSCALL
 Krn_StackPush(
-    STACK_ENTRY* pStack,
-    STACK_ENTRY* pEntry
+    KRN_STACK_ENTRY* pStack,
+    KRN_STACK_ENTRY* pEntry
     )
 {
-    STACK_ENTRY* pOldVal;
-    STACK_ENTRY* pExcVal;
+    KRN_STACK_ENTRY* pOldVal;
+    KRN_STACK_ENTRY* pExcVal;
     
     // Atomic operation.
     do
@@ -211,14 +211,14 @@ Krn_StackPush(
     } while (pExcVal != pOldVal);
 }
 
-STACK_ENTRY*
+KRN_STACK_ENTRY*
 OSCALL
 Krn_StackPop(
-    STACK_ENTRY* pStack
+    KRN_STACK_ENTRY* pStack
     )
 {
-    STACK_ENTRY* pOldVal;
-    STACK_ENTRY* pExcVal;
+    KRN_STACK_ENTRY* pOldVal;
+    KRN_STACK_ENTRY* pExcVal;
     
     // Atomic operation.
     do
@@ -247,7 +247,7 @@ Krn_StackPop(
 void
 OSCALL
 Krn_ListInit(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     )
 {
     // Initialize to itself.
@@ -258,8 +258,8 @@ Krn_ListInit(
 void
 OSCALL
 Krn_ListAddHead(
-    LIST_ENTRY* pList,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pList,
+    KRN_LIST_ENTRY* pEntry
     )
 {
     pEntry->pNext = pList->pNext;
@@ -273,8 +273,8 @@ Krn_ListAddHead(
 void
 OSCALL
 Krn_ListAddTail(
-    LIST_ENTRY* pList,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pList,
+    KRN_LIST_ENTRY* pEntry
     )
 {
     pEntry->pNext = pList;
@@ -285,13 +285,13 @@ Krn_ListAddTail(
     pEntry->pPrev->pNext = pEntry;
 }
 
-LIST_ENTRY*
+KRN_LIST_ENTRY*
 OSCALL
 Krn_ListRemoveHead(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     )
 {
-    LIST_ENTRY* pEntry;
+    KRN_LIST_ENTRY* pEntry;
     
     if (pList->pNext == pList)
     {
@@ -306,13 +306,13 @@ Krn_ListRemoveHead(
     return pEntry;
 }
 
-LIST_ENTRY*
+KRN_LIST_ENTRY*
 OSCALL
 Krn_ListRemoveTail(
-    LIST_ENTRY* pList
+    KRN_LIST_ENTRY* pList
     )
 {
-    LIST_ENTRY* pEntry;
+    KRN_LIST_ENTRY* pEntry;
     
     if (pList->pPrev == pList)
     {
@@ -330,7 +330,7 @@ Krn_ListRemoveTail(
 void
 OSCALL
 Krn_ListRemoveEntry(
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pEntry
     )
 {
     pEntry->pNext->pPrev = pEntry->pPrev;
@@ -340,8 +340,8 @@ Krn_ListRemoveEntry(
 void
 OSCALL
 Krn_ListAddEntry(
-    LIST_ENTRY* pBefore,
-    LIST_ENTRY* pEntry
+    KRN_LIST_ENTRY* pBefore,
+    KRN_LIST_ENTRY* pEntry
     )
 {
     pEntry->pNext = pBefore;
@@ -350,4 +350,6 @@ Krn_ListAddEntry(
     pEntry->pNext->pPrev = pEntry;
     pEntry->pPrev->pNext = pEntry;
 }
+
+
 
