@@ -43,10 +43,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
 // Kernel error codes and reporting.
 // 
+typedef uint32_t KRN_ERROR_CODE;
+
 #define KRN_ERR_FATAL_MASK                  0x80000000
 
-#define KRN_ERR_ASSERT_FAILED               (0x00000001 | KRN_ERR_FATAL_MASK)
-#define KRN_ERR_INV_PRINTF_FORMAT           (0x00000002 | KRN_ERR_FATAL_MASK)
+#define KRN_ERR_SUCCESS                     (0x00000000)
+
+#define KRN_ERR_ASSERT_FAILED               (0x10000001 | KRN_ERR_FATAL_MASK)
+#define KRN_ERR_INV_PRINTF_FORMAT           (0x10000002 | KRN_ERR_FATAL_MASK)
+#define KRN_ERR_NOT_ENOUGH_MEM              (0x10000003)
+#define KRN_ERR_INV_PARAMETER               (0x10000004)
 
 // 
 // Various kernel data structures.

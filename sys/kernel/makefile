@@ -41,6 +41,7 @@ LD_FLAGS=--script ldscript_$(BUILD_ARCH) -nostdlib --sysroot=$(SYS_ROOT)
 OBJ_FILES= \
 	$(OUTDIR)/krn_base.o \
 	$(OUTDIR)/krn_main.o \
+	$(OUTDIR)/krn_mem.o \
 	$(OUTDIR)/krn_stdio.o \
 
 all: kernel_image
